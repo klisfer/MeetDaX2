@@ -60,7 +60,7 @@ class DatePickViewController: UIViewController  {
                 button.isSelected = true
                 self.time = "9:00 AM"
                 //button.setTitleColor(UIColor(hexString: "#ffffffff"), for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 button.setTitleColor(UIColor.white, for: .normal)
 
                 slctdtime.text = ("kl. 9:00")
@@ -92,7 +92,7 @@ class DatePickViewController: UIViewController  {
                 print("selected")
                 self.time = "10:00 AM"
                 //button.setTitleColor(UIColor(hexString: "#ffffffff"), for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 button.setTitleColor(UIColor.white, for: .normal)
                 
                 slctdtime.text = ("kl. 10:00")
@@ -124,7 +124,7 @@ class DatePickViewController: UIViewController  {
                 button.isSelected = true
                 self.time = "11:00 AM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 11:00")
                 setupDate()
             }
@@ -151,7 +151,7 @@ class DatePickViewController: UIViewController  {
                 button.isSelected = true
                 self.time = "12:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 12:00")
                 setupDate()
             }
@@ -178,7 +178,7 @@ class DatePickViewController: UIViewController  {
                 button.isSelected = true
                 self.time = "1:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 13:00")
                 setupDate()
             }
@@ -205,7 +205,7 @@ class DatePickViewController: UIViewController  {
                 button.isSelected = true
                 self.time = "2:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 14:00")
                 setupDate()
             }
@@ -232,7 +232,7 @@ class DatePickViewController: UIViewController  {
                 button.isSelected = true
                 self.time = "3:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 15:00")
                 setupDate()
             }
@@ -259,7 +259,7 @@ class DatePickViewController: UIViewController  {
                 button.isSelected = true
                 self.time = "4:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 16:00")
                 setupDate()
             }
@@ -286,7 +286,7 @@ class DatePickViewController: UIViewController  {
                 button.isSelected = true
                 self.time = "5:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 17:00")
                 setupDate()
             }
@@ -313,7 +313,7 @@ class DatePickViewController: UIViewController  {
                 button.isSelected = true
                 self.time = "6:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 18:00")
                 setupDate()
             }
@@ -471,36 +471,43 @@ class DatePickViewController: UIViewController  {
         let endDate = calendar.addingTimeInterval(Later)
         dataToPost.sharedManager.endDate = endDate
         
+        
+        // start time and end time
+        
         let dateFormatter3 = DateFormatter()
-        dateFormatter.dateFormat = "h:mm a"
-        let date = dateFormatter.date(from: self.time)
+        dateFormatter3.dateFormat = "HH:mm"
+        let endTime = dateFormatter3.string(from: dataToPost.sharedManager.endDate!)
+        let startTime  = dateFormatter3.string(from: dataToPost.sharedManager.startDate!)
         
-        dateFormatter.dateFormat = "HH:mm"
-        let date24 = dateFormatter.string(from: date!)
+        // date for posting
         
+        let dateFormatter2 = DateFormatter()
+        dateFormatter2.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter2.string(from: dataToPost.sharedManager.startDate!)
         
-        
-        print("time: \(date24)")
-        
-        print("calendar \(calendar)")
-        print("endDate \(endDate)")
-       
+//        print("time: \(endTime)")
+//
+//        print("calendar \(calendar)")
+//        print("endDate \(endDate)")
+//
       
         if (dataToPost.sharedManager.updateId == nil){
 
         let spin2 = UIViewController.displaySpinner(onView: self.view)
             ref = db.collection("bookings").addDocument(data: [
-                "stylist" : dataToPost.sharedManager.stylistId,
-                "customer" : user?.uid,
-                "services" : dataToPost.sharedManager.services,
-                "startDate": dataToPost.sharedManager.startDate,
-                "imageUrl" : dataToPost.sharedManager.imgUrl,
-                "duration" : dataToPost.sharedManager.duration,
-                "endDate" : dataToPost.sharedManager.endDate,
-                "price" : dataToPost.sharedManager.price,
-                "eid" : "",
-                "how_often" : "",
-                "id" : ""
+                "stylist"    : dataToPost.sharedManager.stylistId,
+                "customer"   : user?.uid,
+                "services"   : dataToPost.sharedManager.services,
+                "date"       : date,
+                "imageUrl"   : dataToPost.sharedManager.imgUrl,
+                "duration"   : dataToPost.sharedManager.duration,
+                "endTime"    : endTime,
+                "startTime"  : startTime,
+                "price"      : dataToPost.sharedManager.price,
+                "eid"        : "",
+                "how_often"  : "",
+                "id"         : "",
+                "comments"   : "",
             ]){ err in
                 if let err = err {
                     print("Error adding document: \(err)")
@@ -562,17 +569,19 @@ class DatePickViewController: UIViewController  {
         }else{
             let spin2 = UIViewController.displaySpinner(onView: self.view)
             db.collection("bookings").document(dataToPost.sharedManager.updateId!).updateData([
-                "stylist" : dataToPost.sharedManager.stylistId,
-                "customer" : user?.uid,
-                "services" : dataToPost.sharedManager.services,
-                "startDate": dataToPost.sharedManager.startDate,
-                "imageUrl" : dataToPost.sharedManager.imgUrl,
-                "duration" : dataToPost.sharedManager.duration,
-                "endDate" : dataToPost.sharedManager.endDate,
-                "price" : dataToPost.sharedManager.price,
-                "eid" : "",
-                "how_often" : "",
-                "id" : ""
+                "stylist"    : dataToPost.sharedManager.stylistId,
+                "customer"   : user?.uid,
+                "services"   : dataToPost.sharedManager.services,
+                "date"       : date,
+                "imageUrl"   : dataToPost.sharedManager.imgUrl,
+                "duration"   : dataToPost.sharedManager.duration,
+                "endTime"    : endTime,
+                "startTime"  : startTime,
+                "price"      : dataToPost.sharedManager.price,
+                "eid"        : "",
+                "how_often"  : "",
+                "id"         : "",
+                "comments"   : "",
             ]) { err in
                 if let err = err {
                     print("Error updating document: \(err)")
@@ -668,7 +677,11 @@ class DatePickViewController: UIViewController  {
     }
     
     @objc func doneClicked(){
-        
+        for (i,slot) in self.slots.enumerated(){
+            slot.isEnabled = true
+            slot.backgroundColor = UIColor.white
+            
+        }
         selectedDt.text = " "
         let date = Date()
         let calendar = Calendar.current
@@ -691,7 +704,7 @@ class DatePickViewController: UIViewController  {
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         datePickButton.setTitle(dateFormatter.string(from: datePicker.date), for: .normal)
         datePickButton.setTitleColor(UIColor(hexString: "#ffffffff"), for: .normal)
-        datePickButton.backgroundColor = UIColor(hexString: "#20BFC6ff")
+        datePickButton.backgroundColor = UIColor(hexString: "#4D58E2ff")
         //selectedDt.text = dateFormatter.string(from: datePicker.date)
         self.date = dateFormatter.string(from: datePicker.date)
         //delegate.dateTime = dateFormatter.string(from: datePicker.date)
@@ -731,7 +744,7 @@ class DatePickViewController: UIViewController  {
         dateFormatters.dateFormat = "MMMM dd, yyyy HH:mm"
         let string: String? = self.date + " 00:00 AM"
         //let finalDatess = dateFormatters.date(from: string!)
-        print("DateString1ofthe \(string )")
+        print("DateString1ofthe \(string)")
 
         let dateFormatter1 = DateFormatter()
         dateFormatter1.locale = Locale(identifier: "en_US_POSIX")
@@ -739,7 +752,7 @@ class DatePickViewController: UIViewController  {
         let string2 : String? = self.date +  " 11:00 PM"
 
         //let finalDate1 = dateFormatter1.date(from: string2!)
-        print("DateString2ofthe \(string2 )")
+        print("DateString2ofthe \(string2)")
         
         
         let startDate = string

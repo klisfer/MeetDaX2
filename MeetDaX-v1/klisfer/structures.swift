@@ -75,7 +75,9 @@ struct bookings{
     var stylistId = String()
     var imgUrl = String()
     var duration = Int()
-    var startDate = Date()
+    var date = String()
+    var startTime = String()
+    var endTime = String()
     
     var price = Int()
     var services = [String]()

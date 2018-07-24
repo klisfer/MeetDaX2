@@ -206,6 +206,11 @@ class ChooseServiceViewController: UIViewController, UITableViewDelegate , UITab
         
         switch (sender.tag) {
         case 1:
+            if let index = self.tableview.indexPathForSelectedRow{
+                
+                self.tableview.deselectRow(at: index, animated: true)
+                
+            }
             for  (i,option) in option.enumerated() {
                 if(i != 0){
                     option.isSelected = false
@@ -221,6 +226,12 @@ class ChooseServiceViewController: UIViewController, UITableViewDelegate , UITab
             
             
         case 2:
+            if let index = self.tableview.indexPathForSelectedRow{
+                
+                self.tableview.deselectRow(at: index, animated: true)
+                
+            }
+
             for  (i,option) in option.enumerated() {
                 if(i != 1){
                     option.isSelected = false
@@ -236,6 +247,12 @@ class ChooseServiceViewController: UIViewController, UITableViewDelegate , UITab
 
          
         case 3:
+            if let index = self.tableview.indexPathForSelectedRow{
+                
+                self.tableview.deselectRow(at: index, animated: true)
+                
+            }
+
             for  (i,option) in option.enumerated() {
                 if(i != 2){
                     option.isSelected = false

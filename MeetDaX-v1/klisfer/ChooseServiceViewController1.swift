@@ -291,7 +291,7 @@ class ChooseServiceViewController1: UIViewController , UITableViewDelegate , UIT
             dataToPost.sharedManager.services = arr
             dataToPost.sharedManager.servicesNames = arr1
             
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "datePick1")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "barberSelect1")
             //            self.present(vc!, animated: true, completion: nil)
             self.navigationController?.pushViewController(vc!, animated: true)
             

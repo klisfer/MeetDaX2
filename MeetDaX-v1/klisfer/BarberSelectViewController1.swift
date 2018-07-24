@@ -245,23 +245,39 @@ class BarberSelectViewController1: UIViewController , UITableViewDelegate, UITab
         dataToPost.sharedManager.endDate = endDate
         
         
+        // start time and end time
+        
+        let dateFormatter3 = DateFormatter()
+        dateFormatter3.dateFormat = "HH:mm"
+        let endTime = dateFormatter3.string(from: dataToPost.sharedManager.endDate!)
+        let startTime  = dateFormatter3.string(from: dataToPost.sharedManager.startDate!)
+        
+        // date for posting
+        
+        let dateFormatter2 = DateFormatter()
+        dateFormatter2.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter2.string(from: dataToPost.sharedManager.startDate!)
+        
 //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "chooseService")
 //        //self.present(vc!, animated: true, completion: nil)
 //        self.navigationController?.pushViewController(vc!, animated:
 //            true)
         if (dataToPost.sharedManager.updateId == nil){
             db.collection("bookings").addDocument(data: [
-                "stylist" : dataToPost.sharedManager.stylistId,
-                "customer" : Auth.auth().currentUser?.uid,
-                "services" : dataToPost.sharedManager.services,
-                "startDate": dataToPost.sharedManager.startDate,
-                "imageUrl" : dataToPost.sharedManager.imgUrl,
-                "duration" : dataToPost.sharedManager.duration,
-                "endDate" : dataToPost.sharedManager.endDate,
-                "price" : dataToPost.sharedManager.price,
-                "eid" : "",
-                "how_often" : "",
-                "id" : ""
+                "customer"   : Auth.auth().currentUser?.uid,
+                "stylist"    : dataToPost.sharedManager.stylistId,
+                "services"   : dataToPost.sharedManager.services,
+                "date"       : date,
+                "imageUrl"   : dataToPost.sharedManager.imgUrl,
+                "duration"   : dataToPost.sharedManager.duration,
+                "endTime"    : endTime,
+                "startTime"  : startTime,
+                "price"      : dataToPost.sharedManager.price,
+                "eid"        : "",
+                "how_often"  : "",
+                "id"         : "",
+                "comments"   : "",
+
             ]){ err in
                 if let err = err {
                     print("Error adding document: \(err)")
@@ -314,16 +330,19 @@ class BarberSelectViewController1: UIViewController , UITableViewDelegate, UITab
             
         }else{
             db.collection("bookings").document(dataToPost.sharedManager.updateId!).updateData([
-                "stylist"  : self.delegate.stylist_id,
-                "services" : self.delegate.servicesId,
-                "startDate": self.delegate.aptDate,
-                "imageUrl" : self.delegate.stylist_pic_url,
-                "duration" : dataToPost.sharedManager.duration,
-                "endDate"  : dataToPost.sharedManager.endDate,
-                "price" : dataToPost.sharedManager.price,
-                "eid" : "",
-                "how_often" : "",
-                "id" : ""
+                "customer"   : Auth.auth().currentUser?.uid,
+                "stylist"    : dataToPost.sharedManager.stylistId,
+                "services"   : dataToPost.sharedManager.services,
+                "date"       : date,
+                "imageUrl"   : dataToPost.sharedManager.imgUrl,
+                "duration"   : dataToPost.sharedManager.duration,
+                "endTime"    : endTime,
+                "startTime"  : startTime,
+                "price"      : dataToPost.sharedManager.price,
+                "eid"        : "",
+                "how_often"  : "",
+                "id"         : "",
+                "comments"   : "",
             ]) { err in
                 if let err = err {
                     print("Error updating document: \(err)")

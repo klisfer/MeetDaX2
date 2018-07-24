@@ -62,7 +62,7 @@ class DatePickViewController1: UIViewController {
                 button.isSelected = true
                 self.time = "9:00 AM"
                 //button.setTitleColor(UIColor(hexString: "#ffffffff"), for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 button.setTitleColor(UIColor.white, for: .normal)
                 
                 slctdtime.text = ("kl. 9:00")
@@ -92,7 +92,7 @@ class DatePickViewController1: UIViewController {
                 button.isSelected = true
                 self.time = "10:00 AM"
                 //button.setTitleColor(UIColor(hexString: "#ffffffff"), for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 button.setTitleColor(UIColor.white, for: .normal)
                 
                 slctdtime.text = ("kl. 10:00")
@@ -122,7 +122,7 @@ class DatePickViewController1: UIViewController {
                 button.isSelected = true
                 self.time = "11:00 AM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 11:00")
                 setupDate()
             }
@@ -149,7 +149,7 @@ class DatePickViewController1: UIViewController {
                 button.isSelected = true
                 self.time = "12:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 12:00")
                 setupDate()
             }
@@ -176,7 +176,7 @@ class DatePickViewController1: UIViewController {
                 button.isSelected = true
                 self.time = "1:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 13:00")
                 setupDate()
             }
@@ -203,7 +203,7 @@ class DatePickViewController1: UIViewController {
                 button.isSelected = true
                 self.time = "2:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 14:00")
                 setupDate()
             }
@@ -230,7 +230,7 @@ class DatePickViewController1: UIViewController {
                 button.isSelected = true
                 self.time = "3:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 15:00")
                 setupDate()
             }
@@ -257,7 +257,7 @@ class DatePickViewController1: UIViewController {
                 button.isSelected = true
                 self.time = "4:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 16:00")
                 setupDate()
             }
@@ -284,7 +284,7 @@ class DatePickViewController1: UIViewController {
                 button.isSelected = true
                 self.time = "5:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 17:00")
                 setupDate()
             }
@@ -311,7 +311,7 @@ class DatePickViewController1: UIViewController {
                 button.isSelected = true
                 self.time = "6:00 PM"
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(hexString: "#20BFC6ff")
+                button.backgroundColor = UIColor(hexString: "#4D58E2ff")
                 slctdtime.text = ("kl. 18:00")
                 setupDate()
             }
@@ -388,6 +388,13 @@ class DatePickViewController1: UIViewController {
         booknowBtn.applyGradients(colours: [UIColor(hexString: "#535353"), UIColor(hexString: "#383838")], locations: [0.5, 1.0])
         booknowBtn.layer.masksToBounds = true
         // Do any additional setup after loading the view.
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        datePickButton.applyGradient(colours: [UIColor(hexString: "#4D58E2"), UIColor(hexString: "#121953")], locations: [ 0.5, 1])
+        datePickButton.layer.masksToBounds = true
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -516,7 +523,7 @@ class DatePickViewController1: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { // change 2 to desired number of seconds
             UIViewController.removeSpinner(spinner: spin2)
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "barberSelect1")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "chooseService1")
 //            self.present(vc!, animated: true, completion: nil)
             self.navigationController?.pushViewController(vc!, animated:
                 true)
@@ -585,7 +592,7 @@ class DatePickViewController1: UIViewController {
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         datePickButton.setTitle(dateFormatter.string(from: datePicker.date), for: .normal)
         datePickButton.setTitleColor(UIColor(hexString: "#ffffffff"), for: .normal)
-        datePickButton.backgroundColor = UIColor(hexString: "#20BFC6ff")
+        datePickButton.backgroundColor = UIColor(hexString: "#4D58E2ff")
         //selectedDt.text = dateFormatter.string(from: datePicker.date)
         self.date = dateFormatter.string(from: datePicker.date)
         //delegate.dateTime = dateFormatter.string(from: datePicker.date)

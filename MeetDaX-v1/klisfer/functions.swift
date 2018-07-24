@@ -256,10 +256,12 @@ extension UIViewController{
         
         let spin2 = UIViewController.displaySpinner(onView: self.view)
         var formatter = DateFormatter()
-        var aptDate = Date()
+        var aptDate = String()
+        var startTime = String()
+        var endTime = String()
         formatter.dateStyle = .medium
         formatter.timeStyle = .medium
-        var someDateTime = formatter.string(from: aptDate)
+      
         
         let userID = Auth.auth().currentUser!.uid
         
@@ -324,9 +326,13 @@ extension UIViewController{
                     print("servicesNames \(fetcheddata.servicesNames)")
                     
                     // adding startDate
-                    aptDate =  document.data()["startDate"] as! Date
+                    aptDate =  document.data()["date"] as! String
+                    startTime = document.data()["startTime"] as! String
+                    endTime = document.data()["endTime"] as! String
                  
-                    fetcheddata.startDate = aptDate
+                    fetcheddata.date = aptDate
+                    fetcheddata.startTime = startTime
+                    fetcheddata.endTime = endTime
                  
                     
                     objects.sharedManager.fetchedBookings.append(fetcheddata)

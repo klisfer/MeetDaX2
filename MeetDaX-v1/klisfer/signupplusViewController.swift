@@ -13,12 +13,20 @@ import FirebaseCore
 import FBSDKCoreKit
 import FirebaseFirestore
 import DynamicColor
-class signupplusViewController: UIViewController {
+import AnimatableReload
+class signupplusViewController: UIViewController , UITableViewDataSource  , UITableViewDelegate {
+    
+    let stuff = ["milk" , "cheese" , "bread"]
+    var services = [services_common]()
+
+    @IBOutlet var option: [UIButton]!
+    
+    @IBOutlet weak var serviceTable: UITableView!
+    var tableViewHeight:CGFloat?
+    
     let delegate = UIApplication.shared.delegate as! AppDelegate
     let db = Firestore.firestore()
-    @IBOutlet weak var card1: CardView!
-    
-    @IBOutlet weak var card2: CardView!
+  
     var cover1 = UIView()
     var cover2 = UIView()
     var mask1 = UIView()
@@ -32,21 +40,39 @@ class signupplusViewController: UIViewController {
     @IBOutlet weak var appt_btn: UIButton!
     @IBOutlet weak var navbar: UINavigationItem!
     
-   
+    @IBOutlet weak var tableviewHeight: NSLayoutConstraint!
+    
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        return (services.count)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cells", for: indexPath) as! signupPlusTableCellTableViewCell
+        
+        cell.servName.text = services[indexPath.row].name
+        cell.servPrice.text = String(services[indexPath.row].price)
+        return cell
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         //button to make appointmeent
         print("current user for image upload: \((Auth.auth().currentUser?.uid)!)")
-       
+        tableviewHeight.constant = 0
          appt_btn.layer.cornerRadius = 6
         
         // or for Swift 3
         
     
         fetchingData2(completion : {  success in
-            
+            self.services = objects.sharedManager.servicessMen
+
         })
         
         
@@ -61,7 +87,7 @@ class signupplusViewController: UIViewController {
         // 3
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: (nav?.frame.size.width)!, height: (nav?.frame.size.height)!))
         imageView.contentMode = .scaleAspectFit
-        let image = UIImage(named: "logo-white")
+        let image = UIImage(named: "Logo_Salon5avenue-white")
         imageView.image = image
         
         // 5
@@ -72,6 +98,22 @@ class signupplusViewController: UIViewController {
     
         
       
+    }
+    override func viewDidLayoutSubviews() {
+//        CATransaction.begin()
+//        CATransaction.setDisableActions(true)
+        appt_btn.applyGradient(colours: [UIColor(hexString: "#2F2F2F"), UIColor(hexString: "#292929"), UIColor(hexString: "#40079B")], locations: [0.0, 0.5, 1])
+        appt_btn.layer.masksToBounds = true
+        
+        
+        navigateBtn.applyGradients(colours: [UIColor(hexString: "#535353"), UIColor(hexString: "#383838")], locations: [0.5, 1.0])
+        navigateBtn.layer.masksToBounds = true
+        
+        
+        callBtn.applyGradients(colours: [UIColor(hexString: "#535353"), UIColor(hexString: "#383838")], locations: [0.5, 1.0])
+        callBtn.layer.masksToBounds = true
+        
+//        CATransaction.commit()
     }
     
     var phoneNo : String = "+917358097519"
@@ -88,8 +130,106 @@ class signupplusViewController: UIViewController {
     
     }
     
+    
+    @IBAction func optionAction(_ sender: UIButton) {
+    
+        switch (sender.tag) {
+        case 1:
+            
+            tableViewHeight = CGFloat(70*(services.count));
+            tableviewHeight.constant = tableViewHeight!
+            
+            
+            print("bhak 1")
+            for  (i,option) in option.enumerated() {
+                if(i != 0){
+                    option.isSelected = false
+                    option.backgroundColor = UIColor(hexString: "#ffffffff")
+                    option.setTitleColor(UIColor.darkGray, for: .normal)
+                    
+                }
+            }
+            services = objects.sharedManager.servicessMen
+            //self.serviceTable.reloadData()
+            AnimatableReload.reload(tableView: self.serviceTable, animationDirection: "up")
+
+            sender.backgroundColor = UIColor(hexString: "#4D58E2ff")
+            sender.setTitleColor(UIColor.white, for: .normal)
+            tableViewHeight = CGFloat(70*(services.count));
+            tableviewHeight.constant = tableViewHeight!
+            
+        case 2:
+            tableViewHeight = CGFloat(70*(services.count));
+            tableviewHeight.constant = tableViewHeight!
+            print("bhak 2")
+            for  (i,option) in option.enumerated() {
+                if(i != 1){
+                    option.isSelected = false
+                    option.backgroundColor = UIColor(hexString: "#ffffffff")
+                    option.setTitleColor(UIColor.darkGray, for: .normal)
+                    
+                }
+            }
+            services = objects.sharedManager.servicessWomen
+            
+            AnimatableReload.reload(tableView: self.serviceTable, animationDirection: "up")
+            
+            sender.backgroundColor = UIColor(hexString: "#4D58E2ff")
+            sender.setTitleColor(UIColor.white, for: .normal)
+            tableViewHeight = CGFloat(70*(services.count));
+            tableviewHeight.constant = tableViewHeight!
+            
+        case 3:
+            tableViewHeight = CGFloat(70*(services.count));
+            tableviewHeight.constant = tableViewHeight!
+            print("bhak 3")
+            for  (i,option) in option.enumerated() {
+                if(i != 2){
+                    option.isSelected = false
+                    option.backgroundColor = UIColor(hexString: "#ffffffff")
+                    option.setTitleColor(UIColor.darkGray, for: .normal)
+                    
+                }
+            }
+            services = objects.sharedManager.servicessChildren
+            //self.serviceTable.reloadData()
+            AnimatableReload.reload(tableView: self.serviceTable, animationDirection: "up")
+            sender.backgroundColor = UIColor(hexString: "#4D58E2ff")
+            sender.setTitleColor(UIColor.white, for: .normal)
+            tableViewHeight = CGFloat(70*(services.count));
+            tableviewHeight.constant = tableViewHeight!
+            
+        default:
+            services = objects.sharedManager.servicessMen
+            self.serviceTable.reloadData()
+            
+        }
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @IBAction func navBtnAct(_ sender: Any) {
-       
+        
+        let lat = 54.914340
+        let long = 9.796964
+        
+        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+            UIApplication.shared.openURL(URL(string:
+                "comgooglemaps://?saddr=&daddr=\(lat),\(long)&directionsmode=driving")!)
+            
+        } else {
+            NSLog("Can't use comgooglemaps://");
+        }
+    
         
     
     }
@@ -122,8 +262,8 @@ class signupplusViewController: UIViewController {
         let yellow = UIColor(hexString: "#292929")
         let purple = UIColor(hexString: "#40079B")
         let gradient = DynamicGradient(colors: [blue, red, yellow])
-        appt_btn.applyGradient(colours: [UIColor(hexString: "#2F2F2F"), UIColor(hexString: "#292929"), UIColor(hexString: "#40079B")], locations: [0.0, 0.4, 0.7])
-        appt_btn.layer.masksToBounds = true
+//        appt_btn.applyGradient(colours: [UIColor(hexString: "#2F2F2F"), UIColor(hexString: "#292929"), UIColor(hexString: "#40079B")], locations: [0.0, 0.4, 0.7])
+//        appt_btn.layer.masksToBounds = true
         
         
         
@@ -207,8 +347,7 @@ class signupplusViewController: UIViewController {
         callBtn.layer.cornerRadius = 6
         callBtn.backgroundColor = .darkGray
        
-        callBtn.applyGradients(colours: [UIColor(hexString: "#535353"), UIColor(hexString: "#383838")], locations: [0.5, 1.0])
-        callBtn.layer.masksToBounds = true
+      
         navigateBtn.layer.shadowColor = UIColor.black.cgColor
         navigateBtn.layer.shadowOffset = CGSize(width: 2, height: 2)
         navigateBtn.layer.shadowRadius = 2
@@ -216,8 +355,7 @@ class signupplusViewController: UIViewController {
         navigateBtn.layer.cornerRadius = 6
         navigateBtn.backgroundColor = .darkGray
         
-        navigateBtn.applyGradients(colours: [UIColor(hexString: "#535353"), UIColor(hexString: "#383838")], locations: [0.5, 1.0])
-        navigateBtn.layer.masksToBounds = true
+        
     }
     
 }

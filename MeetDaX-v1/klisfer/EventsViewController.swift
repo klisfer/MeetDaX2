@@ -12,6 +12,7 @@ import FirebaseStorage
 import Kingfisher
 import FirebaseAuth
 import FirebaseFirestore
+import AnimatableReload
 
 
 class EventsViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
@@ -57,26 +58,44 @@ class EventsViewController: UIViewController , UITableViewDataSource, UITableVie
         }
        
         //cell.dateTime.text = self.delegate.event_dateTime[indexPath.row]
-        let event_date = objects.sharedManager.fetchedBookings[indexPath.row].startDate
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
-        dateFormatter.locale = Locale(identifier: "en_US")
-        let dat = dateFormatter.string(from: event_date)
-        print("the date is: \(dat)")
+        let event_date = objects.sharedManager.fetchedBookings[indexPath.row].date
         
         
-        let datFormatter = DateFormatter()
-        datFormatter.dateStyle = .none
-        datFormatter.timeStyle = .medium
-        datFormatter.dateFormat = "h:mm a"
-        datFormatter.locale = Locale(identifier: "en_US")
-        let time = datFormatter.string(from: event_date)
+        // display formatting fetched date
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd"
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+        var dateToPost : String?
+        
+        var dates = dateFormatterGet.date(from: event_date)
+        if let date = dateFormatterGet.date(from: event_date){
+            dateToPost = dateFormatterPrint.string(from: date)
+        }
+        else {
+            print("There was an error decoding the string")
+        }
+        
+//        let finalDate = dateFormatter.date(from: event_date)!
+//        let date = dateFormatter.string(from: finalDate)
+        
+        //display formatting time
+        let event_time = objects.sharedManager.fetchedBookings[indexPath.row].startTime
+        let dateFormatter3 = DateFormatter()
+        dateFormatter3.dateFormat = "HH:mm"
+        let event_timeformat = dateFormatter3.date(from: event_time)!
+        
+        
+        //dateFormatter.dateStyle = .medium
+        
+        
+       // dateFormatter.locale = Locale(identifier: "en_US")
+       
+        
         //print("the time is: \(time)")
-        cell.dateTime.text = time
-        cell.dat.text = ("- \(dat)")
+        cell.dateTime.text = event_time
+        cell.dat.text = ("- \(dateToPost!)")
         cell.updateBtn.addTarget(self, action: #selector(updateEvent), for: .touchUpInside)
         cell.updateBtn.tag = indexPath.row
         //loading event stylist image
@@ -87,23 +106,10 @@ class EventsViewController: UIViewController , UITableViewDataSource, UITableVie
         let url = URL(string: imgUrl)
         cell.barberPic.kf.setImage(with: url)
         
-        //        let session = URLSession.shared
-//        let task = session.dataTask(with: url!, completionHandler: { (data, response , error) in
-//            if error != nil{
-//                print (error)
-//                return
-//            }
-//            DispatchQueue.main.async{
-//                let imahe : UIImage = UIImage(data: data!)!
-//                cell.barberPic.image = imahe
-//                self.delegate.allBarberPic.append(imahe)
-//            }
-//
-//        }).resume()
-        
+
         let date1 = Date()
 
-        if date1 <= event_date  {
+        if date1 <= dates!  {
             let img = UIImage(named: "card-bg")
             cell.card.backgroundColor = UIColor(patternImage: img!)
 
@@ -137,6 +143,7 @@ class EventsViewController: UIViewController , UITableViewDataSource, UITableVie
         }
         
         tableView.reloadData()
+        AnimatableReload.reload(tableView: tableView, animationDirection: "up")
         
         
 
@@ -182,8 +189,11 @@ class EventsViewController: UIViewController , UITableViewDataSource, UITableVie
         
         if(dataToPost.sharedManager.switchToEventFlag == true){
         fetchingData2(completion : {  success in
-            self.tableEvents.reloadData()
+//            self.tableEvents.reloadData()
+            AnimatableReload.reload(tableView: self.tableEvents, animationDirection: "up")
+
         })
+            
             
         }
         dataToPost.sharedManager.switchToEventFlag = false

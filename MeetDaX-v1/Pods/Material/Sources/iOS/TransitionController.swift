@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2017, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
+ * Copyright (C) 2015 - 2018, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,20 +57,13 @@ open class TransitionController: UIViewController {
    helper method.
    */
   open internal(set) var rootViewController: UIViewController! {
-    willSet {
-      guard newValue != rootViewController else {
-        return
-      }
-      
-      guard let v = rootViewController else {
-        return
-      }
-      
-      removeViewController(viewController: v)
-    }
     didSet {
       guard oldValue != rootViewController else {
         return
+      }
+      
+      if let v = oldValue {
+        removeViewController(viewController: v)
       }
       
       prepare(viewController: rootViewController, in: container)

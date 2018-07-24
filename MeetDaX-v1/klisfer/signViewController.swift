@@ -192,7 +192,7 @@ class signViewController: UIViewController , UIImagePickerControllerDelegate, UI
         uploadBtn.layer.shadowRadius = 2
         uploadBtn.layer.shadowOpacity = 0.5
         uploadBtn.layer.cornerRadius = 2
-        uploadBtn.backgroundColor = UIColor(hexString: "#20BFC6ff")
+        uploadBtn.backgroundColor = UIColor(hexString: "#4D58E2ff")
         viewScroll.addSubview(uploadBtn)
 
         
@@ -209,11 +209,11 @@ class signViewController: UIViewController , UIImagePickerControllerDelegate, UI
         // fullname.backgroundColor = UIColor(red: 0, green:0,  blue:0 ,alpha: 0.4)
         fullname.attributedPlaceholder = NSAttributedString(string: "Fornavn", attributes: [NSAttributedStringKey.foregroundColor:  UIColor(hexString: "#95989Aff")])
         //text Field Mobile
-        fullname.tintColor = UIColor(hexString: "#20BFC6ff")
+        fullname.tintColor = UIColor(hexString: "#4D58E2ff")
         fullname.lineHeight = 1.0 // bottom line height in points
         fullname.selectedLineHeight = 2.0
-        fullname.selectedTitleColor = UIColor(hexString: "#20BFC6ff")!
-        fullname.selectedLineColor = UIColor(hexString: "#20BFC6ff")!
+        fullname.selectedTitleColor = UIColor(hexString: "#4D58E2ff")!
+        fullname.selectedLineColor = UIColor(hexString: "#4D58E2ff")!
         fullname.textColor = UIColor(hexString: "#000000ff")!
         fullname.title = "Fornavn"
         
@@ -232,11 +232,11 @@ class signViewController: UIViewController , UIImagePickerControllerDelegate, UI
         viewScroll.addSubview(mobile)
         // mobile.backgroundColor = UIColor(red: 0, green:0,  blue:0 ,alpha: 0.4)
         mobile.attributedPlaceholder = NSAttributedString(string: customerDetails.sharedManager1.mobileNumber, attributes: [NSAttributedStringKey.foregroundColor:  UIColor(hexString: "#95989Aff")])
-        mobile.tintColor = UIColor(hexString: "#20BFC6ff")
+        mobile.tintColor = UIColor(hexString: "#4D58E2ff")
         mobile.lineHeight = 1.0 // bottom line height in points
         mobile.selectedLineHeight = 2.0
-        mobile.selectedTitleColor = UIColor(hexString: "#20BFC6ff")!
-        mobile.selectedLineColor = UIColor(hexString: "#20BFC6ff")!
+        mobile.selectedTitleColor = UIColor(hexString: "#4D58E2ff")!
+        mobile.selectedLineColor = UIColor(hexString: "#4D58E2ff")!
         mobile.textColor = UIColor(hexString: "#000000ff")!
         mobile.isEnabled = false
         mobile.title = "Mobile Number"
@@ -256,11 +256,11 @@ class signViewController: UIViewController , UIImagePickerControllerDelegate, UI
         viewScroll.addSubview(gender)
         //  gender.backgroundColor = UIColor(red: 0, green:0,  blue:0 ,alpha: 0.4)
         gender.attributedPlaceholder = NSAttributedString(string: "Efternavn", attributes: [NSAttributedStringKey.foregroundColor:  UIColor(hexString: "#95989Aff")])
-        gender.tintColor = UIColor(hexString: "#20BFC6ff")
+        gender.tintColor = UIColor(hexString: "#4D58E2ff")
         gender.lineHeight = 1.0 // bottom line height in points
         gender.selectedLineHeight = 2.0
-        gender.selectedTitleColor = UIColor(hexString: "#20BFC6ff")!
-        gender.selectedLineColor = UIColor(hexString: "#20BFC6ff")!
+        gender.selectedTitleColor = UIColor(hexString: "#4D58E2ff")!
+        gender.selectedLineColor = UIColor(hexString: "#4D58E2ff")!
         gender.textColor = UIColor(hexString: "#000000ff")!
         gender.title = "Efternavn"
         
@@ -279,11 +279,11 @@ class signViewController: UIViewController , UIImagePickerControllerDelegate, UI
         viewScroll.addSubview(age)
         //  age.backgroundColor = UIColor(red: 0, green:0,  blue:0 ,alpha: 0.4)
         age.attributedPlaceholder = NSAttributedString(string: "Age", attributes: [NSAttributedStringKey.foregroundColor:  UIColor(hexString: "#95989Aff")])
-        age.tintColor = UIColor(hexString: "#20BFC6ff")
+        age.tintColor = UIColor(hexString: "#4D58E2ff")
         age.lineHeight = 1.0 // bottom line height in points
         age.selectedLineHeight = 2.0
-        age.selectedTitleColor = UIColor(hexString: "#20BFC6ff")!
-        age.selectedLineColor = UIColor(hexString: "#20BFC6ff")!
+        age.selectedTitleColor = UIColor(hexString: "#4D58E2ff")!
+        age.selectedLineColor = UIColor(hexString: "#4D58E2ff")!
         age.textColor = UIColor(hexString: "#000000ff")!
         age.title = "Dob"
         //gender picker
@@ -299,11 +299,11 @@ class signViewController: UIViewController , UIImagePickerControllerDelegate, UI
         genderSelect.textColor = UIColor(hexString: "#000000ff")
         //genderSelect.backgroundColor = UIColor(red: 0, green:0,  blue:0 ,alpha: 0.4)
         genderSelect.attributedPlaceholder = NSAttributedString(string: "Køn", attributes: [NSAttributedStringKey.foregroundColor: UIColor(hexString: "#95989Aff")])
-        genderSelect.tintColor = UIColor(hexString: "#20BFC6ff")
+        genderSelect.tintColor = UIColor(hexString: "#4D58E2ff")
         genderSelect.lineHeight = 1.0 // bottom line height in points
         genderSelect.selectedLineHeight = 2.0
-        genderSelect.selectedTitleColor = UIColor(hexString: "#20BFC6ff")!
-        genderSelect.selectedLineColor = UIColor(hexString: "#20BFC6ff")!
+        genderSelect.selectedTitleColor = UIColor(hexString: "#4D58E2")!
+        genderSelect.selectedLineColor = UIColor(hexString: "#4D58E2ff")!
         genderSelect.textColor = UIColor(hexString: "#000000ff")!
         genderSelect.title = "Køn"
         genderSelect.layer.masksToBounds = true
@@ -346,7 +346,7 @@ class signViewController: UIViewController , UIImagePickerControllerDelegate, UI
         let signupbutton = UIButton(frame: CGRect(x: 20, y: 845 , width: screenWidth - 40 , height: 50))
         signupbutton.setTitle("Log ind", for: UIControlState.normal)
         signupbutton.tintColor = UIColor.black
-        signupbutton.backgroundColor = UIColor(hexString: "#20BFC6ff")
+        signupbutton.backgroundColor = UIColor(hexString: "#4D58E2ff")
         signupbutton.addTarget(self, action: #selector(buttonAction),for: .touchUpInside)
         signupbutton.layer.shadowColor = UIColor.black.cgColor
         signupbutton.layer.shadowOffset = CGSize(width: 5, height: 5)

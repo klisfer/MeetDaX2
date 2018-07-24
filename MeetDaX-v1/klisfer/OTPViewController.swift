@@ -23,6 +23,13 @@ class OTPViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidLayoutSubviews() {
+        loginbtn.applyGradient(colours: [UIColor(hexString: "#4D58E2"), UIColor(hexString: "#121953")], locations: [ 0.5, 1])
+        loginbtn.layer.masksToBounds = true
+        
+    }
+
+    
     private func setupLayout(){
         
         let screenSize: CGRect = UIScreen.main.bounds
@@ -111,7 +118,8 @@ class OTPViewController: UIViewController {
                         for document in querySnapshot!.documents {
                             count = count + 1
                         }
-                        if(count == 1){
+                        print("countless: \(count)")
+                        if(count >= 1){
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabBar")
                             self.present(vc!, animated: true, completion: nil)
                             print("Document exists)")

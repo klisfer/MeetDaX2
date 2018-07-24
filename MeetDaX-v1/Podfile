@@ -32,8 +32,8 @@ target 'klisfer' do
    pod 'JSSAlertView', '~> 3.0.4'
    pod 'BEMCheckBox'
    pod 'DynamicColor', '~> 4.0.1'
-
-
+   pod "AnimatableReload"
+   pod 'DLRadioButton', '~> 1.4'
 
    use_frameworks!
    pod 'DatePickerDialog'

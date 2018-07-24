@@ -80,7 +80,11 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
     }
     
-    
+    override func viewDidLayoutSubviews() {
+        loginbtn.applyGradient(colours: [UIColor(hexString: "#4D58E2"), UIColor(hexString: "#121953")], locations: [ 0.5, 1])
+        loginbtn.layer.masksToBounds = true
+     
+    }
     private func setupLayout(){
         
         let screenSize: CGRect = UIScreen.main.bounds
@@ -95,12 +99,12 @@ class ViewController: UIViewController,UITextFieldDelegate {
         phone.returnKeyType = UIReturnKeyType.done
         phone.clearButtonMode = UITextFieldViewMode.whileEditing;
         phone.contentVerticalAlignment = UIControlContentVerticalAlignment.center
-        phone.tintColor = UIColor(hexString: "#20BFC6ff")
+        phone.tintColor = UIColor(hexString: "#4D58E2ff")
         phone.lineHeight = 1.0 // bottom line height in points
         phone.selectedLineHeight = 2.0
 
-        phone.selectedTitleColor = UIColor(hexString: "#20BFC6ff")!
-        phone.selectedLineColor = UIColor(hexString: "#20BFC6ff")!
+        phone.selectedTitleColor = UIColor(hexString: "#4D58E2ff")!
+        phone.selectedLineColor = UIColor(hexString: "#4D58E2ff")!
         phone.textColor = UIColor.white
         phone.title = "Mobile no."
         view.addSubview(phone)
@@ -119,13 +123,13 @@ class ViewController: UIViewController,UITextFieldDelegate {
 //        password.returnKeyType = UIReturnKeyType.done
 //        password.clearButtonMode = UITextFieldViewMode.whileEditing;
 //        password.contentVerticalAlignment = UIControlContentVerticalAlignment.center
-//        password.tintColor = UIColor(hexString: "#20BFC6ff")
+//        password.tintColor = UIColor(hexString: "#4D58E2ff")
 //        //password.textColor = UIColor.mf_veryDarkGray()
 //        password.title = "Password"
 //        password.lineHeight = 1.0 // bottom line height in points
 //        password.selectedLineHeight = 2.0
-//        password.selectedTitleColor = UIColor(hexString: "#20BFC6ff")!
-//        password.selectedLineColor = UIColor(hexString: "#20BFC6ff")!
+//        password.selectedTitleColor = UIColor(hexString: "#4D58E2ff")!
+//        password.selectedLineColor = UIColor(hexString: "#4D58E2ff")!
 //        view.addSubview(password)
 //
         
@@ -190,7 +194,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
 //        goglbtn.addTarget(self, action: #selector(googleLogin),for: .touchUpInside)
 //        view.addSubview(goglbtn)
         
-        var image: UIImage = UIImage(named: "logo-white-center")!
+        var image: UIImage = UIImage(named: "Logo_Salon5avenue-white")!
         logo = UIImageView(image: image)
         logo.frame = CGRect(x: (view.frame.width - (2/7)*view.frame.height)/2,y: (0.1125)*view.frame.height ,width: (2/7)*view.frame.height ,height: (1/7)*view.frame.height )
         
